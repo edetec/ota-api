@@ -5,13 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 
-const clientMock = {
-  id: 1,
-  name: 'Ana',
-  birth: new Date(1990, 0, 31),
-};
-
-describe('ClientController (e2e)', () => {
+describe('TravelController (e2e)', () => {
   let app: INestApplication;
   const prismaMock = createPrismaMock();
 
@@ -27,22 +21,9 @@ describe('ClientController (e2e)', () => {
     await app.init();
   });
 
-  it('/client (GET)', () => {
-    return request(app.getHttpServer()).get('/client').expect(200);
+  it('/travel (GET)', () => {
+    return request(app.getHttpServer()).get('/travel').expect(200);
   });
 
-  it('/client (POST)', async () => {
-    prismaMock.client.create.mockResolvedValue(clientMock);
-    const { name, birth } = clientMock;
-    return request(app.getHttpServer())
-      .post('/client/')
-      .send({ name, birth })
-      .expect(201)
-      .expect({
-        ...clientMock,
-        birth: clientMock.birth.toISOString(),
-      });
-  });
-
-  // TODO testar todas as rotas do modulo client
+  // TODO testar todas as rotas do modulo travel
 });
