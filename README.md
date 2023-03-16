@@ -32,7 +32,7 @@
 $ npm install
 ```
 
-## Docker - Postgressql
+## Docker - Postgresql
 
 ```bash
 # production mode
